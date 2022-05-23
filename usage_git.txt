@@ -1,0 +1,9 @@
+gitの簡単なフロー
+1, 変更があったファイルをadd
+	git add ファイル名
+	
+2, addしたファイルをcommit
+	git commit -m "メッセージ"
+
+3, pushでリモートに反映させる
+	git push origin master
