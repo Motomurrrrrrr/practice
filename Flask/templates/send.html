@@ -1,0 +1,34 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@4000&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/page.css') }}"
+/>
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>卒業要件確認Webアプリケーション</title>
+  </head>
+
+  <body>
+    <h1>卒業要件確認</h1>
+    <p>
+      1.Twinsの成績タブの一番下で成績をダウンロード<br />（CSVファイル・UTF-8を選択）
+    </p>
+    <p>2.ダウンロードした成績をアップロード</p>
+
+    <div class="input_send_area">
+      <form action="test.html" method="post" enctype="multipart/form-data">
+        <input type="file" id="file_upload" />
+        <input class="btn btn-glow btn-primary" type="submit" />
+      </form>
+    </div>
+  </body>
+</html>
