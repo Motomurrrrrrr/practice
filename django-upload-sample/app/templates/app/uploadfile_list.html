@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %} {% block content %}
+<h1>卒業要件確認</h1>
+<p>
+  <a href="{% url 'app:single_upload_with_model' %}">ファイルアップロードへ</a>
+</p>
+<h1>ファイルの一覧</h1>
+{% for uploadfile in uploadfile_list %}
+<p><a href="{{ uploadfile.file.url }}">{{ uploadfile.file.url }}</a></p>
+{% endfor %} {% endblock %}
