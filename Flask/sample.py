@@ -46,11 +46,11 @@ def decision(name,kamoku,need):
     global doc
     for row in cur.execute(kamoku):
         number+=row[0]
-    if number<need:
-        lack=need-number
-        doc += "<p><b>{}</b>の単位が<b>{}単位足りていません</b>。</p>".format(name, lack)
-    else:
-        doc += "<p><b>{}</b>の単位は十分です。</p>".format(name)
+    #if number<need:
+    #    lack=need-number
+    doc += "<tr><td><b>{}</b></td><td><b>{}単位</b></td></tr>".format(name,number)
+    #else:
+    #    doc += "<p><b>{}</b>の単位は十分です。</p>".format(name)
     cur.close() 
     conn.close()
 
