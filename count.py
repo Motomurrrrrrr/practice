@@ -8,7 +8,7 @@ conn = sqlite3.connect(dbname)
 cur = conn.cursor() 
 
 e=open('result.html','w')
-e.write('<h1>卒業単位の確認\n</h1>')
+e.write('<h1>知識情報・図書館学類システム主専攻の卒業単位の確認\n</h1>')
 e.close()
         
 #------------------------------------------------------------
@@ -18,23 +18,15 @@ def decision(name,kamoku,need):
     for row in cur.execute(kamoku):
         number+=row[0]
     if number<need:
-        lack=need-number
-        #result_text='あなたは{}の単位が{}単位足りていません。'.format(name,lack)
-        #return render_template(result.html,result_text) 
+        lack=need-number 
         f=open('result.html','a')
-        f.write('あなたは{}の単位が{}単位足りていません。\n'.format(name,lack))
+        f.write('<font color="red">{}の単位が{}単位足りていません。\n</font>'.format(name,lack))
         f.close()
-        #with open('result.html','a') as f:
-         #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-    #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack))
     else:
         g=open('result.html','a')
-        g.write('あなたの{}の単位は十分です。\n'.format(name))
+        g.write('{}の単位は十分です。\n'.format(name))
         g.close()
-        #with open('result.html','a') as f:
-         #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-        #return render_template(result.html,result_text)
-        #print('あなたの{}の単位は十分です。'.format(name))
+
 
 #体育(2)
 pe='SELECT 単位数 FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 like "2%";'
@@ -115,13 +107,13 @@ allcredit='SELECT 単位数  FROM sample WHERE 総合評価 in ("A+","A","B","C"
 num=0
 for row in cur.execute(allcredit):
     num+=row[0]
+    l=124-num
 h=open('result.html','a')
-h.write("あなたが現在取得している単位数は{}です。\n".format(num))
+if l<=0:
+    h.write("<h3>あなたが現在取得している単位数は{}！卒業できます、おめでとう！！</h3>\n".format(num))
+else:
+    h.write("<h3>あなたが現在取得している単位数は{}！卒業まであと{}単位必要です、頑張ろう！</h3>\n".format(num,l))
 h.close()
-#print("あなたが現在取得している単位数は{}です。".format(num))
-
-
- 
 
 # クローズ処理
 cur.close() 
