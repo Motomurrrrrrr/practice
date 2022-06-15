@@ -128,7 +128,7 @@ def result():
     decision('専門基礎科目',freecredit123,32)
 
     #Gじゃない自由単(6～)
-    free='SELECT 単位数  FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 not in ("G%","1%","2%","3%","4%","5%","6%","7%","8%","9%");'
+    free='SELECT 単位数  FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 not like "G%" and 科目番号 not like "1%" and 科目番号 not like "2%" and 科目番号 not like "3%" and 科目番号 not like "4%" and 科目番号 not like "5%" and 科目番号 not like "6%" and 科目番号 not like "7%" and 科目番号 not like "8%" and 科目番号 not like "9%";'
     decision('他の学類の専門基礎科目',free,6)
 
     #教職を除いたすべての単位数
