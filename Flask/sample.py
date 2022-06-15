@@ -35,7 +35,7 @@ def submit():
     return make_response(jsonify({'result':'upload OK.'})) #upload完了
 
 doc = "<DOCTYPE html>"
-doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body>"
+doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1>"
     #------------------------------------------------------------
     #必修科目の判定
 def decision(name,kamoku,need):
@@ -46,20 +46,20 @@ def decision(name,kamoku,need):
     global doc
     for row in cur.execute(kamoku):
         number+=row[0]
-        if number<need:
-            lack=need-number
-            #result_text='あなたは{}の単位が{}単位足りていません。'.format(name,lack)
-            #return render_template(/result.html,result_text) 
-            doc += "<p>あなたは{}の単位が{}単位足りていません。</p>".format(name, lack)
-            #with open('/result.html','a') as f:
-            #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-            #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack))
-        else:
-            doc += "<p>あなたの{}の単位は十分です。</p>".format(name)
-            #with open('/result.html','a') as f:
-            #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-            #return render_template(/result.html,result_text)
-            #print('あなたの{}の単位は十分です。'.format(name))
+    if number<need:
+        lack=need-number
+        #result_text='あなたは{}の単位が{}単位足りていません。'.format(name,lack)
+        #return render_template(/result.html,result_text) 
+        doc += "<p>あなたは<b>{}</b>の単位が<b>{}単位足りていません</b>。</p>".format(name, lack)
+        #with open('/result.html','a') as f:
+        #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
+        #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack))
+    else:
+        doc += "<p>あなたの<b>{}</b>の単位は十分です。</p>".format(name)            
+        #with open('/result.html','a') as f:
+        #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
+        #return render_template(/result.html,result_text)
+        #print('あなたの{}の単位は十分です。'.format(name))
     cur.close() 
     conn.close()
 
@@ -148,7 +148,7 @@ def result():
     cur = conn.cursor() 
     for row in cur.execute(allcredit):
         num+=row[0]
-    doc += "<p>あなたが現在取得している単位数は{}です。</p>".format(num)
+    doc += "<p>あなたが現在取得している単位数は<b>{}</b>です。</p>".format(num)
     #print("あなたが現在取得している単位数は{}です。".format(num))
     # クローズ処理
     cur.close() 
