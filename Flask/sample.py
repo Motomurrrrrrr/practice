@@ -32,7 +32,7 @@ def submit():
     cur.close()
     conn.close()
     #return rows>>>>>>データの表示
-    return make_response(jsonify({'result':'upload OK.'})) #upload完了
+    return render_template("result.html")
 
 doc = "<DOCTYPE html>"
 doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1><table>"
