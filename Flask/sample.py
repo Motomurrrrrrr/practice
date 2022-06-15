@@ -48,18 +48,9 @@ def decision(name,kamoku,need):
         number+=row[0]
     if number<need:
         lack=need-number
-        #result_text='あなたは{}の単位が{}単位足りていません。'.format(name,lack)
-        #return render_template(/result.html,result_text) 
-        doc += "<p>あなたは<b>{}</b>の単位が<b>{}単位足りていません</b>。</p>".format(name, lack)
-        #with open('/result.html','a') as f:
-        #   print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-        #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack))
+        doc += "<p><b>{}</b>の単位が<b>{}単位足りていません</b>。</p>".format(name, lack)
     else:
-        doc += "<p>あなたの<b>{}</b>の単位は十分です。</p>".format(name)            
-        #with open('/result.html','a') as f:
-        #print('あなたは{}の単位が{}単位足りていません。'.format(name,lack),file=f)
-        #return render_template(/result.html,result_text)
-        #print('あなたの{}の単位は十分です。'.format(name))
+        doc += "<p><b>{}</b>の単位は十分です。</p>".format(name)
     cur.close() 
     conn.close()
 
@@ -148,8 +139,11 @@ def result():
     cur = conn.cursor() 
     for row in cur.execute(allcredit):
         num+=row[0]
-    doc += "<p>あなたが現在取得している単位数は<b>{}</b>です。</p>".format(num)
-    #print("あなたが現在取得している単位数は{}です。".format(num))
+        L=124-num
+    if L<=0:
+        doc += "<p>あなたが現在取得している単位数は<b>{}</b>！卒業できます、おめでとう！！</p>".format(num)
+    else:
+        doc += "<p>あなたが現在取得している単位数は<b>{}</b>！卒業まであと<b>{}<b>単位必要です、頑張ろう！</p>".format(num,L)  
     # クローズ処理
     cur.close() 
     conn.close()
