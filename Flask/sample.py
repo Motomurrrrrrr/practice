@@ -35,7 +35,7 @@ def submit():
     return make_response(jsonify({'result':'upload OK.'})) #upload完了
 
 doc = "<DOCTYPE html>"
-doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1>"
+doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1><table>"
     #------------------------------------------------------------
     #必修科目の判定
 def decision(name,kamoku,need):
@@ -141,9 +141,9 @@ def result():
         num+=row[0]
         L=124-num
     if L<=0:
-        doc += "<p>あなたが現在取得している単位数は<b>{}</b>！卒業できます、おめでとう！！</p>".format(num)
+        doc += "</table><p>あなたが現在取得している単位数は<b>{}</b>！卒業できます、おめでとう！！</p>".format(num)
     else:
-        doc += "<p>あなたが現在取得している単位数は<b>{}</b>！卒業まであと<b>{}<b>単位必要です、頑張ろう！</p>".format(num,L)  
+        doc += "</table><p>あなたが現在取得している単位数は<b>{}</b>！卒業まであと<b>{}<b>単位必要です、頑張ろう！</p>".format(num,L)  
     # クローズ処理
     cur.close() 
     conn.close()
