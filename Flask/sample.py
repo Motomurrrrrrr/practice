@@ -91,7 +91,7 @@ def result():
     akasuki='SELECT 単位数 FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 like "GE121%";'
     decision('アカデミックスキルズ',akasuki,1)
     #プロ入(3)
-    pronyu='SELECT 単位数 FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 like "GE181%" or 科目番号 like "GE106%";'
+    pronyu='SELECT 単位数 FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号 like "GA181%" or 科目番号 like "GE106%";'
     decision('プログラミング入門',pronyu,3)
     #情報数学A(2)
     josuA='SELECT 単位数 FROM sample WHERE 総合評価 in ("A+","A","B","C") and 科目番号="GA15141" or 科目番号="GE10811";'
