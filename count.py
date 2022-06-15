@@ -8,7 +8,7 @@ conn = sqlite3.connect(dbname)
 cur = conn.cursor() 
 
 e=open('result.html','w')
-e.write('卒業単位の確認\n')
+e.write('<h1>卒業単位の確認\n</h1>')
 e.close()
         
 #------------------------------------------------------------
