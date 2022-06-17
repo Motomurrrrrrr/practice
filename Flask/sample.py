@@ -44,7 +44,7 @@ def decision(name,kamoku,need):
     conn = sqlite3.connect(dbname) 
     cur = conn.cursor() 
     number=0
-    global doc
+    global doc, lack_kamoku
     for row in cur.execute(kamoku):
         number+=row[0]
     doc += "<tr><td><b>{}</b></td><td align=right><b>{}</b>/{}</td></tr>".format(name,number,need)
