@@ -35,7 +35,8 @@ def submit():
     return render_template("result.html")
 
 doc = "<DOCTYPE html>"
-doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1><table>"
+doc += "<html><head><title>卒業要件確認アプリケーション</title></head><body><h1>確認結果</h1><table border=1>"
+lack_kamoku = ""
     #------------------------------------------------------------
     #必修科目の判定
 def decision(name,kamoku,need):
@@ -46,9 +47,11 @@ def decision(name,kamoku,need):
     global doc
     for row in cur.execute(kamoku):
         number+=row[0]
-    #if number<need:
-    #    lack=need-number
-    doc += "<tr><td><b>{}</b></td><td><b>{}単位</b></td></tr>".format(name,number)
+    doc += "<tr><td><b>{}</b></td><td align=right><b>{}</b>/{}</td></tr>".format(name,number,need)
+    if number<need:
+        lack = need-number
+        lack_kamoku = lack_kamoku + "<p>{}の単位があと{}単位必要です</p>".format(name, lack)
+
     #else:
     #    doc += "<p><b>{}</b>の単位は十分です。</p>".format(name)
     cur.close() 
@@ -143,7 +146,8 @@ def result():
     if L<=0:
         doc += "</table><p>あなたが現在取得している単位数は<b>{}</b>！卒業できます、おめでとう！！</p>".format(num)
     else:
-        doc += "</table><p>あなたが現在取得している単位数は<b>{}</b>！卒業まであと<b>{}<b>単位必要です、頑張ろう！</p>".format(num,L)  
+        doc += "</table><p>あなたが現在取得している単位数は<b>{}</b>！<br>卒業まであと<b>{}<b>単位必要です、頑張ろう！</p>".format(num,L)
+        doc += lack_kamoku
     # クローズ処理
     cur.close() 
     conn.close()
